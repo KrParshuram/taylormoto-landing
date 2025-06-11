@@ -10,7 +10,7 @@ import ExportMap from "./component/About/ExportMap";
 import ExportChart from "./component/ExportChart";
 import Contact from "./component/Contact/Contact";
 import Footer from "./component/Footer";
-import ImageCarousel from "./component/ImaACgeCarousal";
+import ImageCarousel from "./component/ImageCarousal";
 
 
 
