@@ -1,5 +1,5 @@
 // src/components/Hero.jsx
-import { motion } from "framer-motion";
+import { motion } from "motion/react"
 
 const Hero = () => {
   return (
