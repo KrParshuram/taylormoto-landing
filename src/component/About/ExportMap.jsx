@@ -17,66 +17,87 @@ const ExportMap = () => {
   const [hovered, setHovered] = useState("");
 
   return (
-<section className="w-full h-full bg-white py-16 px-4 sm:px-8 text-gray-800">
-  <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-    Taylor Moto Export Presence in India
-  </h2>
-
-  <div className="w-full flex justify-center">
-    <ComposableMap
-      projection="geoMercator"
-      projectionConfig={{ scale: 1000, center: [82.8, 22.6] }}
-      width={800}
-      height={600}
-      style={{
-        width: "auto",
-        height: "auto",
-        maxWidth: "1000px",
-      }}
+    <section
+      className="w-full h-full bg-white py-16 px-4 sm:px-8 text-gray-800"
+      aria-labelledby="export-map-heading"
     >
-      <Geographies geography={indiaGeo}>
-        {({ geographies }) =>
-          geographies.map((geo) => {
-            const name = geo.properties.st_nm;
-            const isActive = activeStates.includes(name);
+      <h2
+        id="export-map-heading"
+        className="text-3xl md:text-4xl font-bold text-center mb-10"
+      >
+        Taylor Moto Export Presence in India
+      </h2>
 
-            return (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                onMouseEnter={() => setHovered(name)}
-                
-                onMouseLeave={() => setHovered("")}
-                style={{
-                  default: {
-                    fill: isActive ? "#dc2626" : "#E2E8F0",
-                    stroke: "#CBD5E0",
-                    outline: "none",
-                  },
-                  hover: {
-                    fill: "#9f1239",
-                    outline: "none",
-                  },
-                  pressed: {
-                    fill: "#9f1239",
-                    outline: "none",
-                  },
-                }}
-              />
-            );
-          })
-        }
-      </Geographies>
-    </ComposableMap>
-  </div>
+      {/* Accessible, descriptive fallback */}
+      <div className="sr-only">
+        <p>
+          Taylor Moto has export presence in the following Indian states:
+        </p>
+        <ul>
+          {activeStates.map((state) => (
+            <li key={state}>{state}</li>
+          ))}
+        </ul>
+      </div>
 
-  {hovered && (
-    <div className="text-center mt-6 text-lg font-medium text-gray-700">
-      Taylor Moto active in <span className="text-red-600">{hovered}</span>
-    </div>
-  )}
-</section>
+      {/* Visible interactive map */}
+      <div
+        className="w-full flex justify-center"
+        aria-label="Interactive map showing Taylor Moto's export locations in India"
+      >
+        <ComposableMap
+          projection="geoMercator"
+          projectionConfig={{ scale: 1000, center: [82.8, 22.6] }}
+          width={800}
+          height={600}
+          style={{
+            width: "auto",
+            height: "auto",
+            maxWidth: "1000px",
+          }}
+        >
+          <Geographies geography={indiaGeo}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const name = geo.properties.st_nm;
+                const isActive = activeStates.includes(name);
 
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={() => setHovered(name)}
+                    onMouseLeave={() => setHovered("")}
+                    style={{
+                      default: {
+                        fill: isActive ? "#dc2626" : "#E2E8F0",
+                        stroke: "#CBD5E0",
+                        outline: "none",
+                      },
+                      hover: {
+                        fill: "#9f1239",
+                        outline: "none",
+                      },
+                      pressed: {
+                        fill: "#9f1239",
+                        outline: "none",
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        </ComposableMap>
+      </div>
+
+      {/* Visible tooltip-like text */}
+      {hovered && (
+        <div className="text-center mt-6 text-lg font-medium text-gray-700">
+          Taylor Moto active in <span className="text-red-600">{hovered}</span>
+        </div>
+      )}
+    </section>
   );
 };
 

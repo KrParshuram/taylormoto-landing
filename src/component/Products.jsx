@@ -1,12 +1,15 @@
 // src/components/Products.jsx
 import React from "react";
 import ProductCard from "./ProductCard";
+
+// Product images
 import productImage1 from "../assets/Images/productImage1.jpg";
 import productImage2 from "../assets/Images/productImage2.jpg";
 import productImage3 from "../assets/Images/productImage3.jpg";
 import productImage4 from "../assets/Images/productImage4.jpg";
 import productImage5 from "../assets/Images/productImage5.jpg";
 
+// Product data
 const products = [
   {
     image: productImage1,
@@ -43,8 +46,10 @@ const products = [
 const Products = () => {
   return (
     <section id="products" className="py-16 px-4 bg-gray-100 text-center">
-      <h2 className="text-4xl font-bold mb-10 text-gray-800">Our Products</h2>
-      <div className="flex flex-wrap justify-center gap-8">
+      <h2 className="text-4xl font-bold mb-10 text-gray-800">
+        Our Products
+      </h2>
+      <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
         {products.map((product, index) => (
           <ProductCard
             key={index}

@@ -1,16 +1,25 @@
-// src/components/About/AboutIntro.jsx
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const AboutIntro = () => (
   <div className="text-center max-w-4xl mx-auto">
-    <motion.h2
+    <Helmet>
+      <title>About Us | Taylor Moto</title>
+      <meta
+        name="description"
+        content="Learn about Taylor Moto – trusted across India for premium engine oils built for performance, protection, and reliability."
+      />
+    </Helmet>
+
+    {/* Heading updated from h2 to h1 for correct semantic structure */}
+    <motion.h1
       initial={{ opacity: 0, y: -30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className="text-4xl md:text-5xl font-bold mb-6"
     >
       About Taylor Moto
-    </motion.h2>
+    </motion.h1>
 
     <motion.p
       initial={{ opacity: 0, y: 20 }}
